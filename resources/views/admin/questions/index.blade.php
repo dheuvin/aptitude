@@ -17,11 +17,11 @@
         </div>
     </div>
 
-    @if($questionManagementLocked)
+    {{-- @if($questionManagementLocked)
         <div class="flash warning">
             This test already has attempts, so question creation, editing, and deletion are locked.
         </div>
-    @endif
+    @endif --}}
 
     <div class="stack">
         @forelse($questions as $question)
@@ -30,7 +30,7 @@
                     <h3>{{ $loop->iteration }}. {{ $question->question }}</h3>
 
                     <div class="actions">
-                        @if(! $questionManagementLocked)
+                        {{-- @if(! $questionManagementLockedc || auth()->user()->role === 'admin') --}}
                             <a href="{{ route('admin.tests.questions.edit', [$test, $question]) }}" class="button secondary">Edit</a>
 
                             <form method="POST" action="{{ route('admin.tests.questions.destroy', [$test, $question]) }}" onsubmit="return confirm('Delete this question?');">
@@ -38,7 +38,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="button danger">Delete</button>
                             </form>
-                        @endif
+                        {{-- @endif --}}
                     </div>
                 </div>
 

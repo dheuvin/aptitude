@@ -32,8 +32,15 @@ class TestController extends Controller
                 $attempt->refresh();
             }
         }
+        //$testStatusArr = array('Available' => \App\Models\TestAttempt::STATUS_PENDING, 'Completed' => \App\Models\TestAttempt::STATUS_SUBMITTED, 'Expired' => \App\Models\TestAttempt::STATUS_EXPIRED, 'In Progress' => \App\Models\TestAttempt::STATUS_IN_PROGRESS);
+         $testStatusArr = [
+        TestAttempt::STATUS_PENDING     => 'Available',
+        TestAttempt::STATUS_SUBMITTED   => 'Completed',
+        TestAttempt::STATUS_EXPIRED     => 'Expired',
+        TestAttempt::STATUS_IN_PROGRESS => 'In Progress',
+    ];
 
-        return view('user.dashboard', compact('attempts'));
+        return view('user.dashboard', compact('attempts','testStatusArr'));
     }
 
     public function show(Test $test)

@@ -106,9 +106,10 @@ class QuestionController extends Controller
 
     private function questionsAreLocked(Test $test): bool
     {
-        return $test->attempts()
-            ->where('status', '!=', TestAttempt::STATUS_PENDING)
-            ->exists();
+        // return $test->attempts()
+        //     ->where('status', '=', TestAttempt::STATUS_PENDING)
+        //     ->exists();
+        return false;
     }
 
     private function redirectIfQuestionsLocked(Test $test)

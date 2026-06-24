@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $users = User::withCount('testAttempts')
-            ->orderByRaw("role = 'admin' DESC")
-->orderBy('created_at', 'desc')
-            ->orderBy('phone')
-            ->get();
+        public function index()
+        {
+            $users = User::withCount('testAttempts')
+                ->orderByRaw("role = 'admin' DESC")
+                ->orderBy('created_at', 'desc')
+                ->orderBy('phone')
+                ->get();
 
-        $assignableUsers = $users->where('role', 'user')->values();
-        $tests = Test::latest()->get();
+            $assignableUsers = $users->where('role', 'user')->values();
+            $tests = Test::latest()->get();
 
-        return view('admin.users.index', compact('users', 'assignableUsers', 'tests'));
-    }
+            return view('admin.users.index', compact('users', 'assignableUsers', 'tests'));
+        }
 
     public function create()
     {
